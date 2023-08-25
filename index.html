@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META TAG -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Pertemuan 2 Studi Independen || Zhafia Rabbani Amalia</title>
+</head>
+<body>
+    <!-- BODY -->
+    <div class="container">
+    <h1>Hitung Nilai Rata-rata</h1>
+    <form id="gradeForm">
+        <label for="nama">Nama Mahasiswa:</label>
+        <input type="text" id="nama" required>
+
+        <label for="mataKuliah">Mata Kuliah:</label>
+        <input type="text" id="mataKuliah" required>
+
+        <label for="grade">Grade:</label>
+        <select id="grade">
+        <option value="4">A</option>
+        <option value="3">B</option>
+        <option value="2">C</option>
+        <option value="1">D</option>
+        <option value="0">E</option>
+        </select>
+
+        <button type="button" id="hitungButton">Hitung</button>
+    </form>
+
+    <table id="resultTable">
+        <thead>
+        <tr>
+            <th>Nama Mahasiswa</th>
+            <th>Mata Kuliah</th>
+            <th>Grade</th>
+            <th>Nilai Rata-rata</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Developed by <a href="https://github.com/pyyyy1/">Zhafia Rabbani Amalia</a></p>
+    </footer>
+</body>
+</html>
