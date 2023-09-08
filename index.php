@@ -1,91 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- META TAG -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pertemuan 1 Studi Independen || Zhafia Rabbani Amalia</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Gantilah dengan path yang sesuai -->
+    <title>Data Nilai Mahasiswa</title>
 </head>
-
-    <!-- STYLE CSS -->
-    <style>
-        body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100hv;
-            margin: 0;
-            font-family: verdana;
-            background-image: url('https://images.unsplash.com/photo-1584531979583-18c5c4b25efc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjUzfHxiYWNrZ3JvdW5kfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');
-        }
-
-        table{
-            border-collapse: collapse;
-            border: 1px solid black;
-            margin-top: 10%;
-        }
-
-        table td {
-            padding: 10px;
-            border: 1px solid black;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 2px;
-            padding-top: 10px;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        footer a{
-            color: black;
-            text-decoration: none;
-        }
-    </style>
 <body>
-    <!-- BODY -->
-    <main>
-    <div>
-        <h1>Biodata Diri</h1>
-    </div>
-    <div>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <?php
-            $data = array(
-                "Nama Lengkap" => "Zhafia Rabbani Amalia",
-                "Nama Panggilan" => "Fia",
-                "Jenis Kelamin" => "Perempuan",
-                "Hobi" => "Bercerita",
-                "Kebangsaan" => "Warga Negara Indonesia",
-                "Kampus" => "Sekolah Tinggi Teknologi Terpadu Nurul Fikri",
-                "Jurusan Kuliah" => "Teknik Informatika",
-                "Semester Kuliah" => 7,
-                "Angkatan" => 2020
-            );
+    <div class="container">
+        <h1>Data Nilai Mahasiswa</h1>
+        <a href="tambah_data_form.php">Tambah Data</a> <!-- Link ke halaman tambah_data_form.php -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Mata Kuliah</th>
+                    <th>Grade</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include("koneksi.php");
 
-            foreach ($data as $label => $value) {
-                echo "<tr>
-                        <td>$label</td>
-                        <td>:</td>
-                        <td>$value</td>
-                    </tr>";
-            }
-        ?>
-    </table>
-    </div>
-    </main>
+                $sql = "SELECT * FROM nilai_mahasiswa";
+                $result = $conn->query($sql);
 
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["id"] . "</td>";
+                        echo "<td>" . $row["nama"] . "</td>";
+                        echo "<td>" . $row["mata_kuliah"] . "</td>";
+                        echo "<td>" . $row["grade"] . "</td>";
+                        echo '<td><a href="edit_data_form.php?id=' . $row["id"] . '">Edit</a> | <a href="hapus_data.php?id=' .$row["id"] . '">Hapus</a></td>';
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>Tidak ada data.</td></tr>";
+                }
+
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
+    </div>
+    
     <!-- FOOTER -->
     <footer>
-        <p>Developed by <a href="https://github.com/pyyyy1/">Zhafia Rabbani Amalia</a>
-        </p>
+        <p>Developed by <a href="https://github.com/pyyyy1/">Zhafia Rabbani Amalia</a></p>
     </footer>
 </body>
 </html>
