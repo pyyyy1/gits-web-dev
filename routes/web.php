@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return redirect()->route('dashboard');
+=======
+    return view('welcome');
+>>>>>>> fe87e450c1b08fde5d6772e3fc4de9ea33bd4747
 });
 
 Route::get('/dashboard', function () {
